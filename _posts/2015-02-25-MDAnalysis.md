@@ -12,9 +12,9 @@ CHARMM, GROMACS, NAMD, Amber と幅広く対応している。
 
 pip で入手可能。
 
-{% highlight bash %}
+```
 $ sudo pip install MDAnalsis
-{% endhighlight %}
+```
 
 # Trajectory から座標を取得
 
