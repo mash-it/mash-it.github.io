@@ -11,3 +11,7 @@ github_username:  mash-it
 # Build settings
 # markdown: kramdown
 markdown: redcarpet
+redcarpet:
+  extensions: ["tables"]
+
+# http://stackoverflow.com/questions/16099153/table-not-render-when-use-redcarpet-in-jekyll-github-pages

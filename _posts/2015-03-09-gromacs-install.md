@@ -1,0 +1,84 @@
+---
+layout: post
+title: GROMACS 事始め
+date: 2015-03-09
+tag: gromacs
+---
+
+##GROMACS とは
+Groningen 大学で開発している、主に生体分子向けの分子動力学シミュレーションのパッケージ。類似の AMBER や CHARMM と違ってオープンソースである。
+
+#ドキュメント
+
+* [Gromacs](http://www.gromacs.org/) 公式サイト。
+* [Manual - Gromacs](http://www.gromacs.org/Documentation/Manual) 公式マニュアル。使い方というよりMDの理論的枠組に詳しい。
+* [GROMACS Tutorials](http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/index.html) Maryland 大学の Lemkul 氏が書いているチュートリアル。
+
+##インストール
+apt-get も可能。
+
+```
+$ sudo apt-get install gromacs
+```
+
+しかしこれでは若干バージョンが古い。本記事執筆時点での最新版は 5.0.4, apt-get は 4.6.5。最新版を使いたい場合は以下の手順で行う。
+
+まず **cmake** (ビルド自動化ツール) と **FFTW** (高速フーリエ変換ライブラリ) が必要なので事前にインストール。cmake は OS に依存しない ./configure のようなもの。MDのどこでフーリエ変換が要るのかと言えば、静電気力の長距離相互作用を Particle Mesh Ewald で計算する時である。
+
+```
+$ sudo apt-get install cmake libfftw3-dev
+```
+
+[Downloads - Gromacs](http://www.gromacs.org/Downloads) から GROMACS の最新版をダウンロードするし、以下の手順でファイルの解凍とインストール。
+
+```
+tar xfz gromacs-5.0.4.tar.gz
+cd gromacs-5.0.4
+mkdir build
+cd build
+cmake .. -DGMX_BUILD_OWN_FFTW=ON -DREGRESSIONTEST_DOWNLOAD=ON
+make
+make check
+sudo make install
+source /usr/local/gromacs/bin/GMXRC
+```
+
+無事インストールが完了したら `gmx` と入力するとクレジット的なものが表示される。
+
+```
+$ gmx
+GROMACS:    gmx, VERSION 5.0.4
+
+GROMACS is written by:
+Emile Apol         Rossen Apostolov   Herman J.C. Berendsen Par Bjelkmar
+Aldert van Buuren  Rudi van Drunen    Anton Feenstra     Sebastian Fritsch
+(...)
+```
+
+#GPU を使う場合
+
+GROMACS は CUDA に対応しているので NVIDIA 製の GPU が使える。この場合、まずインストール前に cmake, FFTW に加えて **cuda** をインストールしておく。
+
+```
+$ sudo apt-get install cuda
+```
+
+インストールで cmake の部分を以下のようにする。
+
+```
+cmake .. -DGMX_GPU=ON -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda
+```
+
+それ以外は同じ。
+
+## パスを通す
+
+GROMACS には `./gromacs` という単一の実行ファイルがある訳ではなく、いくつものツールの集合体である。これらは標準では `/usr/local/gromacs/bin` にインストールされている。
+
+パスを通すなどの処理は以下のスクリプトで自動化されているので、これを `.bashrc` などに書いておくといい。
+
+```
+source /usr/local/gromacs/bin/GMXRC
+```
+
+
