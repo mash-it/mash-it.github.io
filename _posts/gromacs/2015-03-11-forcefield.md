@@ -1,8 +1,9 @@
 ---
 layout: post
-title: GROMACS 力場について
-date: 2015-03-10
-tag: gromacs
+title: Forcefield 力場について
+date: 2015-03-11
+categories: gromacs
+permalink: /:categories/:title
 ---
 
 GROMACS の力場についてはマニュアルの4章に詳しいが、ここでは概略と力場ファイルの読み方だけ述べる。
