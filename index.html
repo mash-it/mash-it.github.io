@@ -7,13 +7,12 @@ layout: default
 <h2>GROMACS</h2>
 
 <ul>
-{% for post in site.posts %}
-{% for category in post.categories %}
-{% if category == 'gromacs' %}
-	<li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
-{% endif %}
-{% endfor %}
-{% endfor %}
+{% for post in site.posts %}{% for category in post.categories %}{% if category == 'gromacs' %}
+	<li>
+		<a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+		<span class="post-meta">({{ post.date | date: "%b %-d, %Y" }})</span>
+	</li>
+{% endif %}{% endfor %}{% endfor %}
 </ul>
 
 <h2>更新順</h2>
