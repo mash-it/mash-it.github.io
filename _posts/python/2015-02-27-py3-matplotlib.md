@@ -2,6 +2,7 @@
 layout: post
 title: Ubuntu 14.04 - Python3 - matplotlib 
 date: 2015-02-27
+category: python
 ---
 
 Ubuntu 14.04 の Python3 に matplotlib を入れた時のメモ。

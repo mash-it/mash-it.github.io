@@ -2,6 +2,7 @@
 layout: post
 title: MDAnalysis
 date: 2015-02-25
+category: md-lib
 ---
 
 MDAnalysis は Python で各種 MD Trajectory の結果を解析するツール。
