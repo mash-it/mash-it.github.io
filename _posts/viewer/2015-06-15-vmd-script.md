@@ -3,7 +3,6 @@ layout: post
 title: VMD script
 date: 2015-06-25
 categories: viewer
-permalink: /:categories/:title
 ---
 
 ターミナルでVMDを起動するとウィンドウが開くとともにターミナルに

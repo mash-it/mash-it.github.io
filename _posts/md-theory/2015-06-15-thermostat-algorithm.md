@@ -3,7 +3,6 @@ layout: post
 title: Thermostat Algorithm 温度制御
 date: 2015-06-15
 category: md-theory
-permalink: /:categories/:title
 ---
 
 Molecular Dynamics の温度制御について述べる。
